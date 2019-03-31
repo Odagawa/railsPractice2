@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
   get '/signup',   to: 'users#new'
+  post '/signup',  to: 'users#create' # to set url /signup (not /user) after sign up
   
   resources :users # url /users/2 , /users/new , etc will be valid
 end
