@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_params)    # 実装は終わっていないことに注意!
+    @user = User.new(user_params)
     
     if @user.save # if success, true
       log_in @user # logging in after sign up
