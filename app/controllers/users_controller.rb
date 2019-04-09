@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     
   end
   
+  ##### new user #####
+  
   def new
     @user = User.new
   end
@@ -22,6 +24,23 @@ class UsersController < ApplicationController
     end
     
   end
+  
+  
+  ##### edit #####
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # 更新に成功した場合を扱う。
+    else
+      render 'edit'
+    end
+  end
+  
   
   private
 
