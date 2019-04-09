@@ -18,6 +18,7 @@ module SessionsHelper
     if (user_id = session[:user_id]) # ユーザーIDにユーザーIDのセッションを代入した結果
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id]) # sessionなしcookiesあり
+      #raise
       user = User.find_by(id: user_id)
       if user && user.authenticated?(cookies[:remember_token])
         log_in user
