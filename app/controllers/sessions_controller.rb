@@ -5,12 +5,12 @@ class SessionsController < ApplicationController
   def create
    @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
-      # ユーザーログイン後にユーザー情報のページにリダイレクトする
+      # ユーザーログイン後にリダイレクトする
       log_in @user # defined in sessions_helper.rb
       
       # if check box checked, remember me
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
-      redirect_to @user
+      redirect_back_or @user # redirect_to @user if without memory
     else
       # エラーメッセージを作成する
       flash.now[:danger] = 'Invalid email/password combination' # `now` is important

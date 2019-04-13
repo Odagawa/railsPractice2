@@ -54,4 +54,17 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+  
+  
+  # 記憶したURL (もしくはデフォルト値) にリダイレクト
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url) # forget before next login
+  end
+
+  # アクセスしようとしたURLを覚えておく
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+    # if request is not GET, the forwarding (GET) should not be sent 
+  end
 end
