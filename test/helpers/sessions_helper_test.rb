@@ -8,7 +8,7 @@ class SessionsHelperTest < ActionView::TestCase
   end
 
   test "current_user returns right user when session is nil" do
-    assert_equal @user, current_user # expected, actualrails test test/helpers/sessions_helper_test.rb
+    assert_equal @user, current_user # expected, actual
     assert is_logged_in?
   end
 

@@ -2,9 +2,13 @@ class UsersController < ApplicationController
   
   
   # these :logged_in_user etc are actions that occurs in a certain condition
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user,   only: [:edit, :update]
 
+
+  def index
+    @users = User.paginate(page: params[:page]) # not User.all
+  end
   
   
   def show

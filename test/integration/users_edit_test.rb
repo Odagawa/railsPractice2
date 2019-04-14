@@ -43,7 +43,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_user_url(@user)
     
     #check whether :forwarding_url is deleted
-    assert_equal nil, session[:forwarding_url]
+    assert_nil session[:forwarding_url]
     
     
     name  = "Foo Bar"
