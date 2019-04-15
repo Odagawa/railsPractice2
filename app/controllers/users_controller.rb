@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # these :logged_in_user etc are actions that occurs in a certain condition
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy # deleted only by admin user
 
 
   def index
@@ -34,6 +35,12 @@ class UsersController < ApplicationController
       render 'new'
     end
     
+  end
+  
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
   
   
@@ -79,4 +86,8 @@ class UsersController < ApplicationController
       # both current_user are defined in sessions_helper.rb
     end
 
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end
