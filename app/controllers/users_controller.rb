@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   
   
   # these :logged_in_user etc are actions that occurs in a certain condition
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
 
 
