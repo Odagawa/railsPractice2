@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   resources :users # url /users/2 , /users/new , etc will be valid
+  resources :account_activations, only: [:edit] # account activation via email
 end
